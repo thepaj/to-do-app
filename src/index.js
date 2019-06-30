@@ -39,8 +39,8 @@ class Lists extends React.Component {
         return (
             <div>
                 <div className="title-secondary">{this.props.title}</div>
-                <div className={this.props.class} onClick={this.props.onListsClick}>
-                    <ItemList items={this.props.value} />
+                <div className={this.props.class} >
+                    <ItemList items={this.props.value} onItemClick={this.props.onListsClick} />
                 </div>
             </div>
         )
@@ -50,7 +50,7 @@ class Lists extends React.Component {
 const ItemList = (props) => {
     const items = props.items;
     const listItems = items.map((items) =>
-        <li>{items}</li>
+        <li><ItemBox item={items} onClick={props.onItemClick} /></li>
     );
 
     return (
@@ -60,13 +60,15 @@ const ItemList = (props) => {
     );
 }
 
-// class ItemBox extends React.Component {
-//     render() {
-//         return (
-//             <div>{this.props.value}</div>
-//         )
-//     }
-// }
+class ItemBox extends React.Component {
+    render() {
+        return (
+            <div onClick={this.props.onClick}>
+                {this.props.item}
+            </div>
+        )
+    }
+}
 
 class App extends React.Component {
     constructor(props) {
@@ -88,6 +90,7 @@ class App extends React.Component {
     }
 
     onItemTodo(item) {
+        console.log('list clicked');
         this.setState({
             doneThings: [...this.state.doneThings, item],
             todoItem: this.state.todoItem.splice()
