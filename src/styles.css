@@ -1,0 +1,88 @@
+body {
+    font-family: 'Prata', serif;
+}
+
+.title {
+    font-size: 70px;
+}
+
+.page {
+    text-align: center;
+    margin: 30px;
+}
+
+.title-secondary {
+    font-family: 'Prata', serif;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.list-container {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 400px;
+}
+
+.todo-container {
+    background-color: #F1F1F2;
+    color: black;
+    padding: 10px;
+}
+
+.done-container {
+    background-color: #BCBABE;
+    color: white;
+    padding: 5px;
+}
+
+.item-card {
+        display: block;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 300px;
+    min-width: 100px;
+    text-align: center;
+    font-family: 'Prata', serif;
+    font-size: 18px;
+}
+
+.item-card-1 {
+    background-color: #BCBABE;
+    counter-reset: white;
+}
+
+.item-card-2 {
+    background-color: #F1F1F2;
+    color: black;
+}
+
+
+.input {
+    text-align: center;
+    font-family: 'Prata', serif;
+    font-size: 18px;
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Prata', serif;
+    font-size: 18px;
+    border: none;
+    background-color: black;
+    color: white;
+    width: 304px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+
+
+
