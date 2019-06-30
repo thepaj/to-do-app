@@ -22,7 +22,6 @@ class Adder extends React.Component {
                         type="text"
                         value={this.props.item}
                         onChange={this.props.onChange}
-                        onFocus="this.value=''"
                     />
                     <br />
                     <button onClick={this.props.onItemSubmit} className="btn">
@@ -41,12 +40,33 @@ class Lists extends React.Component {
             <div>
                 <div className="title-secondary">{this.props.title}</div>
                 <div className={this.props.class} onClick={this.props.onListsClick}>
-                    <ul>{this.props.value}</ul>
+                    <ItemList items={this.props.value} />
                 </div>
             </div>
         )
     }
 }
+
+const ItemList = (props) => {
+    const items = props.items;
+    const listItems = items.map((items) =>
+        <li>{items}</li>
+    );
+
+    return (
+        <div>
+            <ul>{listItems}</ul>
+        </div>
+    );
+}
+
+// class ItemBox extends React.Component {
+//     render() {
+//         return (
+//             <div>{this.props.value}</div>
+//         )
+//     }
+// }
 
 class App extends React.Component {
     constructor(props) {
