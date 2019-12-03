@@ -49,8 +49,8 @@ class Lists extends React.Component {
 
 const ItemList = (props) => {
     const items = props.items;
-    const listItems = items.map((items) =>
-        <li><ItemBox item={items} onClick={props.onItemClick} /></li>
+    const listItems = items.map((items, index) =>
+        <li><ItemBox item={items} index={index} onClick={props.onItemClick} key={index} /></li>
     );
 
     return (
@@ -63,7 +63,7 @@ const ItemList = (props) => {
 class ItemBox extends React.Component {
     render() {
         return (
-            <div onClick={this.props.onClick}>
+            <div onClick={() => this.props.onClick(this.props.index)} className="itembox">
                 {this.props.item}
             </div>
         )
@@ -76,7 +76,8 @@ class App extends React.Component {
         this.state = {
             item: null,
             todoItem: [],
-            doneThings: []
+            doneThings: [],
+            thing: null,
         }
 
         this.onItemSubmit = this.onItemSubmit.bind(this);
@@ -89,18 +90,23 @@ class App extends React.Component {
         })
     }
 
-    onItemTodo(item) {
-        console.log('list clicked');
+    onItemTodo(itemIndex) {
+        const anarray = this.state.todoItem.slice();
+        let item = anarray[itemIndex];
+        anarray.splice(itemIndex, 1)
+
         this.setState({
             doneThings: [...this.state.doneThings, item],
-            todoItem: this.state.todoItem.splice()
+            todoItem: anarray,
         })
+
     }
 
-    onItemDone() {
-        console.log('done');
+    onItemDone(itemIndex) {
+        const anarray = this.state.doneThings.slice();
+        anarray.splice(itemIndex, 1)
         this.setState({
-            doneThings: this.state.doneThings.splice()
+            doneThings: anarray,
         })
     }
 
@@ -119,7 +125,7 @@ class App extends React.Component {
                             class="item-card-1"
                             title="things to do"
                             value={this.state.todoItem}
-                            onListsClick={() => this.onItemTodo(this.state.todoItem[0])}
+                            onListsClick={(itemIndex) => this.onItemTodo(itemIndex)}
                         />
                     </div>
                     <div className="done-container">
@@ -127,7 +133,7 @@ class App extends React.Component {
                             class="item-card-2"
                             title="things done"
                             value={this.state.doneThings}
-                            onListsClick={() => this.onItemDone()}
+                            onListsClick={(itemIndex) => this.onItemDone(itemIndex)}
                         />
                     </div>
                 </div>
